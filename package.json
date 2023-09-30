@@ -1,4 +1,14 @@
 {
+  "name": "talk-to-me",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "This project is centered around the implementation of WebSockets. It is a web chat application that uses asynchronous, real-time communication to deliver a dynamic and interactive interface.",
+  "license": "MIT",
+  "author": "Daniel Cunha Oliveira <dangrunger@gmail.com>",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "type": "module",
   "dependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
