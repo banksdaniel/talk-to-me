@@ -11,7 +11,7 @@ try {
   socketRoutes(io);
 
   app.get('/chat', (req, res) => {
-    //TODO: res.sendFile -- create an html page to simulate chat
+    res.sendFile(new URL('./index.html', import.meta.url).pathname);
   });
 
   const PORT = 3000;
