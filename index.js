@@ -1,23 +1,17 @@
-import http from 'http';
-import express from 'express';
-import { Server } from 'socket.io';
-import { socketRoutes } from './src/routes/socketRoutes.js'
+const express = require('express');
+const bodyParser = require('body-parser');
+const roomRoutes = require('./routes/roomRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
+const PORT = process.env.PORT || 3000;
 
-try {
-  socketRoutes(io);
+app.use(bodyParser.json());
 
-  app.get('/chat', (req, res) => {
-    res.sendFile(new URL('./index.html', import.meta.url).pathname);
-  });
+app.use('/auth', authRoutes);
 
-  const PORT = 3000;
-  server.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}! 🔥`);
-  });
-} catch (error) {
-  console.error('An error occurred:', error);
-}
+app.use('/api', roomRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
